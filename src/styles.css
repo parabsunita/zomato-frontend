@@ -1,0 +1,98 @@
+/* src/styles.css */
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #8d8686;
+  padding: 1rem;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.menu-icon {
+  cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #8d8686;
+  padding: 1rem;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 1.5rem;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  color: #000;
+  font-weight: bold;
+}
+
+/* Main container */
+.main-container {
+  display: flex;
+  height: 80vh;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  background-color: #8d8686;
+  padding: 1rem;
+}
+body {
+  background-color: #eadada;
+}
+.loginContainer {
+  border: 2px solid black;
+  border-radius: 36px;
+  height: 75vh;
+}
+.loginContainer input {
+  padding: 3px;
+  border-radius: 15px;
+  padding-left: 30px;
+}
+.loginContainer select {
+  padding: 3px;
+  border-radius: 15px;
+  padding-left: 30px;
+}
+.loginContainer label {
+  font-size: 1rem;
+
+  font-weight: 600;
+  padding-left: 11px;
+}
+.loginContainer button {
+  padding: 5px;
+  width: 100px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+.loginContainer p {
+  padding-top: 5px;
+  font-weight: 500;
+  font-style: oblique;
+}
