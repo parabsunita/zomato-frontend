@@ -28,7 +28,7 @@ const Panel = () => {
             {/* ... */}
           </ul>
         </aside>
-        <main className="main-content">
+        <main className="main-content ">
           {/* Include your main content components */}
           <h1>Dashboard</h1>
           <p>Content goes here...</p>

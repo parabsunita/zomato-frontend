@@ -5,8 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #8d8686;
-  padding: 1rem;
+  background-color: #4e4b4b;
+  padding: 0.5rem 1rem;
 }
 
 .header h1 {
@@ -20,7 +20,7 @@
 /* Sidebar */
 .sidebar {
   width: 200px;
-  background-color: #8d8686;
+  background-color: #4e4b4b;
   padding: 1rem;
 }
 
@@ -40,34 +40,37 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #333;
+  color: #000;
 }
 
 .sidebar-nav a:hover,
 .sidebar-nav a.active {
-  color: #000;
+  color: #f7f3f3;
   font-weight: bold;
 }
 
 /* Main container */
 .main-container {
   display: flex;
-  height: 80vh;
+  height: 82vh;
 }
 
 /* Footer */
 .footer {
   text-align: center;
-  background-color: #8d8686;
-  padding: 1rem;
+  background-color: #4e4b4b;
+  padding: 0.5rem 1rem;
+}
+.footer p {
+  font-size: 1rem;
 }
 body {
-  background-color: #eadada;
+  background-color: #757474;
 }
 .loginContainer {
   border: 2px solid black;
   border-radius: 36px;
-  height: 75vh;
+  height: 85vh;
 }
 .loginContainer input {
   padding: 3px;
@@ -81,7 +84,7 @@ body {
 }
 .loginContainer label {
   font-size: 1rem;
-
+  margin-bottom: 0;
   font-weight: 600;
   padding-left: 11px;
 }
@@ -95,4 +98,38 @@ body {
   padding-top: 5px;
   font-weight: 500;
   font-style: oblique;
+}
+.error {
+  color: red;
+  font-style: italic;
+  font-size: 14px;
+}
+legend {
+  font-size: 1rem !important;
+}
+.fieldContainer {
+  height: 100%;
+}
+fieldset label {
+  margin-bottom: 0;
+}
+input[name="opening_days"] {
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+/* Restaurant.css */
+.table-container {
+  overflow: hidden; /* Hide any content that overflows the container */
+  max-height: 400px; /* Set the desired height for the tbody container */
+  position: relative;
+}
+
+.scrollable-tbody {
+  overflow-y: scroll; /* Enable vertical scrolling when tbody content exceeds height */
+}
+.resturantForm {
+  height: 70%;
+}
+.resturantForm > div {
+  height: 100%;
 }

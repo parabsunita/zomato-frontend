@@ -18,6 +18,18 @@ const Sidebar = () => {
             <span>Resturant</span>
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/category" activeClassName="active">
+            <FaClipboardList className="mr-3" />
+            <span>Category</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/addItem" activeClassName="active">
+            <FaClipboardList className="mr-3" />
+            <span>Item</span>
+          </NavLink>
+        </li>
       </ul>
     </aside>
   );
