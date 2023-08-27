@@ -133,3 +133,22 @@ input[name="opening_days"] {
 .resturantForm > div {
   height: 100%;
 }
+
+.dropzone {
+  border: 2px dashed #cccccc;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropzone-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
