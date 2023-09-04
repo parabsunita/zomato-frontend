@@ -12,7 +12,7 @@ const CategoryForm = () => {
       await axios
         .get("http://localhost:3000/api/restaurant/restaurant/details")
         .then((response) => {
-          setRestaurantOptions(response.data.resturants);
+          setRestaurantOptions(response.data.restaurants)
         })
         .catch((error) => {
           console.error("Error fetching restaurant data:", error);

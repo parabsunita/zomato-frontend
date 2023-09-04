@@ -11,6 +11,7 @@ const validationSchema = Yup.object().shape({
   imgUrl: Yup.string()
     .url("Invalid URL format")
     .required("Image URL is required"),
+  category: Yup.string().required("Category is required"),
 });
 
 const initialValues = {
@@ -21,6 +22,8 @@ const initialValues = {
   isVeg: false,
   approvalStatus: "",
   rejectionStatus: "",
+  restaurantId: "", // Assuming you have a restaurantId field
+  category: "", // Add category field
 };
 
 const ItemForm = () => {
@@ -28,27 +31,53 @@ const ItemForm = () => {
     axios
       .post("http://localhost:3000/api/restaurant/catalogue/additem", values)
       .then((response) => {
-        console.log("Item added successfully:", response.data);
+        alert("Item added successfully:", response.data);
         // Handle success notification or redirection if needed
       })
       .catch((error) => {
-        console.error("Error adding item:", error);
+        alert("Error adding item:", error);
         // Handle error notification if needed
       });
   };
   const [restaurants, setRestaurants] = useState([]);
-
+  const [categories, setCategories] = useState([]);
+  const [selectedRestaurantId, setSelectedRestaurantId] = useState("");
   useEffect(() => {
     // Fetch restaurant details from the API
     axios
       .get("http://localhost:3000/api/restaurant/restaurant/details")
       .then((response) => {
-        setRestaurants(response.data.resturants);
+        setRestaurants(response.data.restaurants);
       })
       .catch((error) => {
         console.error("Error fetching restaurant details:", error);
       });
   }, []);
+  useEffect(() => {
+    if (selectedRestaurantId) {
+    } else {
+      // Reset categories when no restaurant is selected
+      setCategories([]);
+    }
+  }, [selectedRestaurantId]);
+
+  const handleRestaurantChange = (e) => {
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    const selectedRestaurantId = selectedOption.getAttribute("id");
+
+    // Update the restaurantName field using setFieldValue
+    axios
+      .get(
+        `http://localhost:3000/api/restaurant/catalogue/getcatalogue/${selectedRestaurantId}`
+      )
+      .then((response) => {
+        setCategories(response.data[0].categories);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  };
+
   return (
     <div className="w-100">
       <h2>Add Restaurant</h2>
@@ -63,13 +92,20 @@ const ItemForm = () => {
               <label htmlFor="restaurantName">Restaurant Name</label>
               <Field
                 as="select"
-                id="restaurantId"
-                name="restaurantId"
+                id="restaurantName" // Change this to "restaurantName"
+                name="restaurantName" // Change this to "restaurantName"
                 className="ml-1 ml-1 p-1 rounded d-block"
+                onChange={handleRestaurantChange}
               >
                 <option value="">Select Restaurant</option>
                 {restaurants.map((restaurant) => (
-                  <option key={restaurant.id} value={restaurant.id}>
+                  <option
+                    key={restaurant.id}
+                    value={restaurant.name}
+                    id={restaurant._id}
+                  >
+                    {" "}
+                    {/* Use restaurant.name as the value */}
                     {restaurant.name}
                   </option>
                 ))}
@@ -80,7 +116,23 @@ const ItemForm = () => {
                 className="error"
               />
             </div>
-
+            <div className="col-3">
+              <label htmlFor="category">Category</label>
+              <Field
+                as="select"
+                id="category"
+                name="category"
+                className="ml-1 ml-1 p-1 rounded d-block"
+              >
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                  <option key={category.name} value={category.name}>
+                    {category.name}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="category" component="div" className="error" />
+            </div>
             <div className="col-3">
               <label htmlFor="price">Price</label>
               <Field
@@ -106,6 +158,8 @@ const ItemForm = () => {
                 className="error"
               />
             </div>
+          </div>
+          <div className="col-12 row mt-3">
             <div className="col-3">
               <label htmlFor="imgUrl">Image URL</label>
               <Field
@@ -116,8 +170,6 @@ const ItemForm = () => {
               />
               <ErrorMessage name="imgUrl" component="div" className="error" />
             </div>
-          </div>
-          <div className="col-12 row mt-3">
             <div className="col-3">
               <label htmlFor="isVeg" style={{ valign: "middle" }}>
                 Is Vegetarian?
